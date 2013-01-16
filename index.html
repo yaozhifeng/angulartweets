@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app>
+<head>
+	<title>Angular Tweets</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+	<script src="js/controllers.js"></script>
+</head>
+<body ng-controller="TweetsCtrl">
+
+		<div id="frm">
+            <form ng-submit="fetch()">
+    			<b>Load Tweets for: </b>
+    			<input placeholder="Twitter username" ng-model="current"></input>
+    			<button type="submit">Go!</button>
+            </form>
+		</div>
+		<div id="content">
+			<div id="recent">
+				<h3>Recent Users</h3>
+				<ol>
+				        <li ng-repeat="user in users">
+				            <a href="#" title="view again" ng-click="fetch_user(user)">{{user}}</a> - 
+				            <a href="#" title="remove" ng-click="remove_user(user)">X</a>
+				        </li>
+				</ol>
+			</div>
+			<div id="tweets">
+				<h3>Tweets</h3>
+				<ul>
+				        <li ng-repeat="tweet in tweets">
+				            <img ng-src="{{tweet.user.profile_image_url}}" />
+				            <span>{{tweet.created_at}}</span>
+				            <h3>{{tweet.user.screen_name}}</h3>
+				            <p>{{tweet.text}}</p>
+				        </li>
+
+				</ul>
+			</div>
+		</div>
+
+</body>
+</html>
